@@ -1,0 +1,15 @@
+name: nllint
+description: nllint
+inputs:
+  is:
+    default: "true"
+    description: "Whether to run nllint"
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        cp -R "$GITHUB_ACTION_PATH/action" nllint
+      if: inputs.is == 'true'
+    - uses: ./nllint
+      if: inputs.is == 'true'
