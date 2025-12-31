@@ -1,0 +1,6 @@
+name: nllint
+description: nllint
+runs:
+  using: composite
+  steps:
+    - uses: suzuki-shunsuke/nllint-action@v0.0.1
