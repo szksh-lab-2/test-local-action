@@ -7,15 +7,16 @@ inputs:
 runs:
   using: composite
   steps:
+    # wi5oofoo2vai is a randowm string to avoid name conflicts
     - if: inputs.is == 'true'
       shell: bash
       run: |
-        cp -R "$GITHUB_ACTION_PATH/nllint" nllint-${{github.run_id}}
+        cp -R "$GITHUB_ACTION_PATH/nllint" nllint-wi5oofoo2vai
     - if: inputs.is == 'true'
-      uses: ./nllint-${{github.run_id}}
+      uses: ./nllint-wi5oofoo2vai
     - if: always()
       shell: bash
       run: |
-        if [ -d "nllint-${GITHUB_RUN_ID}" ]; then
-          rm -rf "nllint-${GITHUB_RUN_ID}"
+        if [ -d "nllint-wi5oofoo2vai" ]; then
+          rm -rf "nllint-wi5oofoo2vai"
         fi
