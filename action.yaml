@@ -7,9 +7,15 @@ inputs:
 runs:
   using: composite
   steps:
-    - shell: bash
+    - if: inputs.is == 'true'
+      shell: bash
       run: |
-        cp -R "$GITHUB_ACTION_PATH/nllint" nllint
-      if: inputs.is == 'true'
-    - uses: ./nllint
-      if: inputs.is == 'true'
+        cp -R "$GITHUB_ACTION_PATH/nllint" nllint-${{github.run_id}}
+    - if: inputs.is == 'true'
+      uses: ./nllint-${{github.run_id}}
+    - if: always()
+      shell: bash
+      run: |
+        if [ -d "nllint-${GITHUB_RUN_ID}" ]; then
+          rm -rf "nllint-${GITHUB_RUN_ID}"
+        fi
