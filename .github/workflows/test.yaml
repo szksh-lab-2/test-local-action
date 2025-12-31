@@ -12,4 +12,4 @@ jobs:
           persist-credentials: false
       - uses: szksh-lab-2/test-local-action@pr-2
         with:
-          is: "false"
+          is: "true"
